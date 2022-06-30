@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import {
+  BarcodeScanner,
+  BarcodeScannerOptions,
+} from '@awesome-cordova-plugins/barcode-scanner/ngx';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +10,27 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  encodedData: any;
+  scannedBarCode: {};
+  barcodeScannerOptions: BarcodeScannerOptions;
 
-  constructor() {}
+  constructor(private scanner: BarcodeScanner) {
+    this.encodedData = 'Ionic is fun';
+    this.barcodeScannerOptions = {
+      showTorchButton: true,
+      showFlipCameraButton: true,
+    };
+  }
 
+  // membuka camera untuk melakukan scanning
+  scanningBarcode() {
+    this.scanner
+      .scan()
+      .then((res) => {
+        this.scannedBarCode = res;
+      })
+      .catch((error) => {
+        alert('Error: ' + error);
+      });
+  }
 }
