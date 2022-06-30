@@ -33,4 +33,17 @@ export class HomePage {
         alert('Error: ' + error);
       });
   }
+
+  // membuat kode barcode
+  generateBarcode() {
+    this.scanner
+      .encode(this.scanner.Encode.TEXT_TYPE, this.encodedData)
+      .then((res) => {
+        alert(res);
+        this.encodedData = res;
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  }
 }

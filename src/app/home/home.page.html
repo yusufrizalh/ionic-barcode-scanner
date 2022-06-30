@@ -9,6 +9,13 @@
     <ion-button color="primary" expand="block" (click)="scanningBarcode()">
       Scan Barcode
     </ion-button>
+    <ion-input
+      placeholder="Enter your text"
+      [(ngModel)]="encodedData"
+    ></ion-input>
+    <ion-button color="primary" expand="block" (click)="generateBarcode()"
+      >Generate QRCode</ion-button
+    >
   </ion-card>
 
   <ion-card>
